@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f8edf1">
+<title>W-MENU — питание в твоём ритме</title>
+<style>
+:root{--bg:#fbf7f6;--paper:#fffefd;--pink:#d88fa6;--pink2:#f4dfe7;--pink3:#faeef2;--rose:#a96980;--ink:#493d42;--muted:#918187;--line:#eee3e6;--sage:#9ba991;--shadow:0 12px 32px rgba(104,68,80,.08);--r:22px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:92px}
+button,input,select{font:inherit}button{cursor:pointer}img{display:block;max-width:100%}
+header{background:linear-gradient(125deg,#f8e8ed,#fff8f6);padding:18px 18px 17px;position:sticky;top:0;z-index:10;border-bottom:1px solid #f2e5e9}
+.head{max-width:850px;margin:auto;display:flex;align-items:center;justify-content:space-between}.logo{font:28px Georgia,serif;letter-spacing:2px;color:#a66b80}.tag{font-size:9px;letter-spacing:2px;color:#987e87;text-transform:uppercase;margin-top:3px}.profile-dot{width:39px;height:39px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--rose);font-size:21px;border:1px solid #f1dfe5}
+main{max-width:850px;margin:auto;padding:19px 15px 30px}.eyebrow{font-size:10px;letter-spacing:1.5px;color:var(--rose);font-weight:700;text-transform:uppercase}.welcome{font:30px Georgia,serif;margin:6px 0}.muted{color:var(--muted);line-height:1.5}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:25px 0 12px}.section-head h2{font:24px Georgia,serif;margin:0}.small-link{border:0;background:none;color:var(--rose);font-size:12px;padding:7px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}.pad{padding:16px}.hero{padding:19px;background:linear-gradient(130deg,#f3dce4,#fff7f4);border:0;position:relative}.hero-top{display:flex;align-items:center;justify-content:space-between}.kcal{font:38px Georgia,serif;color:#986579;margin:9px 0 2px}.hero p{margin:0;color:#8d737e;font-size:12px}.pill{background:#ffffffa8;border-radius:30px;padding:7px 10px;font-size:10px;color:#956577;letter-spacing:.5px}.progress{height:7px;border-radius:10px;background:#ffffffb5;margin:15px 0 7px;overflow:hidden}.progress i{display:block;height:100%;width:0;background:var(--sage);border-radius:10px;transition:width .2s}.progress-caption{display:flex;justify-content:space-between;font-size:10px;color:#8d737e}
+.days{display:flex;gap:7px;overflow:auto;padding:2px 0 7px;scrollbar-width:none}.day{flex:0 0 auto;min-width:43px;padding:9px 11px;border-radius:14px;border:1px solid var(--line);background:#fff;color:var(--muted);font-size:12px}.day b{display:block;font-size:14px;color:inherit;margin-bottom:2px}.day.active{background:var(--pink);color:#fff;border-color:var(--pink);box-shadow:0 5px 13px #d88fa633}
+.meal-list{display:grid;gap:12px}.meal-card{display:grid;grid-template-columns:118px 1fr;min-height:126px}.meal-img{width:118px;height:100%;min-height:126px;object-fit:cover;background:#f4e7eb}.meal-info{padding:12px 12px 11px;min-width:0}.meal-type{font-size:10px;color:var(--rose);font-weight:700;letter-spacing:.8px;text-transform:uppercase}.meal-title{font:18px Georgia,serif;margin:5px 0 6px}.meta{font-size:11px;color:var(--muted);display:flex;gap:9px;flex-wrap:wrap}.meal-buttons{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.btn{border:0;border-radius:12px;padding:10px 13px;background:var(--pink2);color:#81566a;font-weight:600;font-size:12px}.btn.primary{background:var(--pink);color:white}.btn.outline{background:#fff;border:1px solid var(--line)}.btn.icon{padding:8px 10px}.btn:active{transform:scale(.98)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:11px}.feature{padding:0}.feature img{width:100%;height:112px;object-fit:cover}.feature .pad{padding:12px}.feature h3{font:17px Georgia,serif;margin:0 0 5px}.feature p{font-size:11px;color:var(--muted);line-height:1.4;margin:0 0 10px}
+.bottom{position:fixed;bottom:0;left:0;right:0;z-index:20;background:#fffdfbf2;backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:8px 3px calc(8px + env(safe-area-inset-bottom));display:flex;justify-content:space-around}.bottom button{border:0;background:none;color:#a19398;font-size:10px;display:grid;justify-items:center;gap:3px;min-width:0;flex:1;padding:2px 0}.bottom button span{font-size:20px}.replace-list{display:grid;gap:8px;margin-top:12px}.replace-option{display:grid;gap:4px;text-align:left;padding:12px;border:1px solid var(--line);border-radius:13px;background:#fff;color:var(--ink)}.replace-option small{color:var(--muted);font-size:11px}.bottom button.active{color:#a7657c}
+.page{display:none}.page.active{display:block}.field{display:grid;gap:6px;margin:11px 0}.field label{font-size:11px;color:var(--muted)}input,select{border:1px solid var(--line);border-radius:12px;background:#fff;padding:12px;color:var(--ink);width:100%}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.choice-grid button{padding:13px 8px}
+.list-check{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}.list-check:last-child{border:0}.list-check input{width:18px;height:18px;accent-color:var(--pink);flex:0 0 auto}
+.prep-row{display:grid;grid-template-columns:78px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.prep-row:last-child{border:0}.prep-row img{width:78px;height:78px;border-radius:14px;object-fit:cover}.prep-row b{font-size:13px}.prep-row p{font-size:11px;color:var(--muted);line-height:1.45;margin:5px 0}
+.recipe-cover{width:100%;height:210px;object-fit:cover}.recipe-body{padding:17px}.recipe-body h2{font:25px Georgia,serif;margin:4px 0}.recipe-body h3{font:18px Georgia,serif;margin:19px 0 8px}.recipe-body li{margin:7px 0;font-size:13px;line-height:1.45}.note{font-size:11px;color:var(--muted);line-height:1.5}
+.reminder{position:fixed;right:12px;bottom:83px;z-index:18;width:min(310px,calc(100vw - 24px));padding:13px;background:#fff;border:1px solid var(--line);border-radius:17px;box-shadow:0 12px 35px #76515b20}.reminder.collapsed{width:auto;padding:8px 12px;border-radius:30px}.reminder p{font-size:12px;color:var(--muted);margin:7px 0 10px}.rem-actions{display:flex;gap:6px}.rem-actions button{border:0;border-radius:10px;background:var(--pink3);color:#805365;padding:8px 10px;font-size:11px}
+.modal-back{position:fixed;inset:0;background:#33252b66;z-index:30;display:none;align-items:flex-end;justify-content:center;padding:12px}.modal-back.open{display:flex}.modal{width:min(560px,100%);max-height:88vh;overflow:auto;background:#fffdfa;border-radius:24px 24px 18px 18px;box-shadow:0 20px 70px #2b172033}.modal-top{display:flex;justify-content:flex-end;padding:10px 12px 0}.close{background:#f6e9ed;border:0;border-radius:50%;width:34px;height:34px;color:#805365;font-size:18px}.hidden{display:none!important}
+@media(min-width:620px){main{padding:25px}.meal-list{grid-template-columns:1fr 1fr}.meal-card{grid-template-columns:112px 1fr}.meal-img{width:112px}.two{grid-template-columns:repeat(2,1fr)}.reminder{bottom:95px}}
+
+.welcome-backdrop{position:fixed;inset:0;z-index:60;background:rgba(55,35,43,.48);display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)}
+.welcome-backdrop.show{display:flex;animation:fadeIn .25s ease}
+.welcome-pop{position:relative;width:min(430px,100%);padding:30px 23px 23px;text-align:center;border-radius:28px;background:linear-gradient(145deg,#fffaf8,#f7e4ea);border:1px solid #fff;box-shadow:0 24px 80px #3b1f2b35;animation:popIn .35s cubic-bezier(.2,.8,.2,1)}
+.welcome-sticker{width:76px;height:76px;margin:0 auto 15px;border-radius:24px;background:#fff;display:grid;place-items:center;font-size:39px;box-shadow:0 8px 25px #a96c8020;transform:rotate(-5deg)}
+.welcome-pop h2{font:34px Georgia,serif;color:#986579;margin:0 0 10px}
+.welcome-pop .meme-line{font:22px Georgia,serif;color:#674957;line-height:1.25;margin:0 auto 10px;max-width:320px}
+.welcome-pop p{font-size:13px;line-height:1.5;color:#927984;margin:0 auto 19px;max-width:300px}
+.welcome-pop .btn{min-width:190px;padding:13px 20px;font-size:13px}
+.welcome-pop .welcome-x{position:absolute;right:12px;top:12px}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes popIn{from{opacity:0;transform:translateY(12px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(prefers-reduced-motion:reduce){.welcome-backdrop.show,.welcome-pop{animation:none}}
+</style>
+</head>
+<body>
+<header><div class="head"><div><div class="logo">W-MENU</div><div class="tag">вкусно жить — это база</div></div><button class="profile-dot" onclick="go('profile')" aria-label="Настройки">⚙</button></div></header>
+<main>
+<section id="home" class="page active">
+<div class="eyebrow">ТВОЙ ЛИЧНЫЙ ПЛАН ПИТАНИЯ</div><div class="welcome">Питайся красиво. Без суеты.</div><div class="muted">Вкусная еда, нормальные порции и минимум возни. Кулинарный подвиг сегодня не обязателен.</div>
+<div class="card hero" style="margin-top:17px"><div class="hero-top"><span class="pill">ТВОЙ ОРИЕНТИР НА ДЕНЬ</span><button class="btn outline" onclick="go('profile')">Изменить</button></div><div class="kcal" id="heroKcal">1600 ккал</div><p>калорийность можно настроить под себя</p><div class="progress"><i id="progressBar"></i></div><div class="progress-caption"><span id="progressText">0 из 4 приёмов отмечено</span><span>маленькие шаги ♡</span></div></div>
+<div class="section-head"><h2>Меню на неделю</h2><span class="eyebrow">7 ДНЕЙ</span></div><div class="days" id="days"></div>
+<div class="section-head" style="margin-top:15px"><h2 id="dayHeading">Понедельник</h2><button class="small-link" onclick="go('recipes')">Все блюда</button></div>
+<div class="meal-list" id="mealList"></div>
+<div class="section-head"><h2>Готовим заранее</h2><button class="small-link" onclick="go('prep')">Весь план →</button></div>
+<div class="two">
+<div class="card feature"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85" alt="Заготовки еды в контейнерах"><div class="pad"><h3>Заготовки на 2–3 дня</h3><p>Что приготовить один раз, чтобы не стоять у плиты каждый день.</p><button class="btn" onclick="go('prep')">Посмотреть</button></div></div>
+<div class="card feature"><img src="https://images.unsplash.com/photo-1547592180-86f7d4a3b7b2?auto=format&fit=crop&w=700&q=85" alt="Список свежих продуктов"><div class="pad"><h3>Список покупок</h3><p>Все продукты для меню в одном удобном списке.</p><button class="btn" onclick="go('shopping')">Открыть</button></div></div>
+</div>
+</section>
+
+<section id="prep" class="page">
+<div class="eyebrow">НЕ ГОТОВИМ КАЖДЫЙ ДЕНЬ</div><div class="welcome">План заготовок</div><p class="muted">Выдели немного времени на подготовку. Потом останется только собрать тарелку и добавить соус.</p>
+<div class="card pad"><div class="eyebrow">НА ПЕРВЫЕ 2–3 ДНЯ</div>
+<div class="prep-row"><img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=300&q=80" alt="Приготовленная курица"><div><b>Курица или индейка</b><p>450–500 г готового мяса. Запеки или потуши сразу на несколько порций. Добавь специи и немного бульона для сочности.</p><label class="list-check"><input type="checkbox">Готово</label></div></div>
+<div class="prep-row"><img src="https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=300&q=80" alt="Готовая крупа"><div><b>Крупа на выбор</b><p>180 г сухого риса, гречки или булгура. Сварить и разложить на 3 порции.</p><label class="list-check"><input type="checkbox">Готово</label></div></div>
+<div class="prep-row"><img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=300&q=80" alt="Овощи"><div><b>Овощи</b><p>600–700 г: кабачок, морковь, перец, стручковая фасоль. Запеки часть, часть оставь для быстрого тушения.</p><label class="list-check"><input type="checkbox">Готово</label></div></div>
+<div class="prep-row"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=300&q=80" alt="Йогурт"><div><b>Соус</b><p>150 г натурального йогурта, зелень, лимон и специи. Храни отдельно в закрытой баночке.</p><label class="list-check"><input type="checkbox">Готово</label></div></div>
+</div>
+<div class="card pad"><b>Как хранить</b><p class="note">Быстро охлади приготовленную еду, убери в закрытые контейнеры в холодильник. Порции, которые не планируешь съесть в ближайшие дни, заморозь. Разогревай только нужную порцию.</p></div>
+</section>
+
+<section id="shopping" class="page">
+<div class="eyebrow">НИЧЕГО ЛИШНЕГО</div><div class="welcome">Список покупок</div><p class="muted">Отмечай продукты прямо по ходу покупок.</p>
+<div class="card pad" id="shopList"><b>Белковые продукты</b>
+<label class="list-check"><input type="checkbox">Курица или индейка</label><label class="list-check"><input type="checkbox">Яйца</label><label class="list-check"><input type="checkbox">Творог</label><label class="list-check"><input type="checkbox">Натуральный йогурт</label><label class="list-check"><input type="checkbox">Сыр / сулугуни</label>
+<hr style="border:0;border-top:1px solid var(--line);margin:13px 0"><b>Крупы и гарниры</b><label class="list-check"><input type="checkbox">Рис</label><label class="list-check"><input type="checkbox">Гречка или булгур</label><label class="list-check"><input type="checkbox">Кукурузно-рисовая паста</label>
+<hr style="border:0;border-top:1px solid var(--line);margin:13px 0"><b>Овощи, фрукты и дополнения</b><label class="list-check"><input type="checkbox">Кабачок, морковь, сладкий перец</label><label class="list-check"><input type="checkbox">Стручковая фасоль</label><label class="list-check"><input type="checkbox">Ягоды / фрукты</label><label class="list-check"><input type="checkbox">Зелень, лимон, специи</label><label class="list-check"><input type="checkbox">Орехи, авокадо</label></div>
+</section>
+
+<section id="recipes" class="page">
+<div class="eyebrow">ИДЕИ ДЛЯ ТВОЕГО МЕНЮ</div><div class="welcome">Блюда и замены</div><p class="muted">Выбирай блюдо по фотографии. Замены подбираются в рамках того же приёма пищи.</p>
+<div class="meal-list" id="allRecipes"></div>
+</section>
+
+<section id="profile" class="page">
+<div class="eyebrow">ТВОИ НАСТРОЙКИ</div><div class="welcome">Настройки питания</div><p class="muted">Калькулятор оценивает потребность и предлагает ориентир. Это не медицинское назначение.</p>
+<div class="card pad"><div class="grid2"><div class="field"><label>Возраст, лет</label><input id="age" type="number" min="18" max="100" value="33"></div><div class="field"><label>Рост, см</label><input id="height" type="number" min="120" max="220" value="164"></div><div class="field"><label>Вес сейчас, кг</label><input id="weight" type="number" min="35" max="300" step=".1" value="80"></div><div class="field"><label>Желаемая потеря, кг</label><input id="loss" type="number" min="0" max="100" step=".5" value="5"></div></div>
+<div class="field"><label>Уровень активности</label><select id="activity"><option value="1.2">Сидячая работа, мало движения</option><option value="1.375">Лёгкая активность, прогулки</option><option value="1.55">Тренировки 3–5 раз в неделю</option><option value="1.725">Высокая активность</option></select></div><button class="btn primary" style="width:100%" onclick="calculate()">Рассчитать мою норму</button><button class="btn outline" style="width:100%;margin-top:9px" onclick="savePersonalData()">Сохранить мои данные на этом устройстве</button><p id="saveStatus" class="note" aria-live="polite">Данные можно сохранить в этом браузере и использовать при следующих посещениях.</p><div id="calcResult" class="card pad hidden" style="background:var(--pink3);margin-top:13px"></div></div>
+<div class="section-head"><h2>Калорийность меню</h2></div><div class="card pad"><p class="muted" style="font-size:12px">Можно выбрать больше или меньше калорий. Под выбранное значение будут адаптироваться порции.</p><div class="choice-grid"><button class="btn" onclick="setKcal(1600)">1600 ккал</button><button class="btn" onclick="setKcal(1800)">1800 ккал</button><button class="btn" onclick="setKcal(2000)">2000 ккал</button><button class="btn" onclick="setKcal(2200)">2200 ккал</button></div><div class="field"><label>Или введи своё значение</label><input id="customKcal" type="number" placeholder="Например, 1900"></div><button class="btn primary" style="width:100%" onclick="setKcal(Number(document.getElementById('customKcal').value))">Сохранить калорийность</button></div>
+<div class="card pad"><b>Приветствие</b><p class="note">Хочешь ещё раз увидеть фирменное приветствие?</p><button class="btn outline" onclick="showWelcome(true)">Показать приветствие</button></div><div class="card pad"><b>Напоминания</b><label class="list-check"><input type="checkbox" id="remindersOn" checked onchange="toggleReminders(this.checked)">Показывать мягкие напоминания в приложении</label><p class="note">Напоминания отображаются, пока сайт открыт. Для push-уведомлений, когда сайт закрыт, потребуется отдельная настройка сервера.</p></div>
+</section>
+
+<section id="progress" class="page">
+<div class="eyebrow">БЕЗ СПЕШКИ И СРАВНЕНИЙ</div><div class="welcome">Твой прогресс</div><p class="muted">Записывай измерения, чтобы видеть тенденцию со временем.</p>
+<div class="card pad"><div class="field"><label>Вес сегодня, кг</label><input id="newWeight" type="number" step=".1" placeholder="Например, 79.5"></div><button class="btn primary" onclick="saveWeight()">Добавить запись</button><p id="weightFeedback" class="note" aria-live="polite"></p><div id="weightHistory" style="margin-top:15px;font-size:13px;color:var(--muted)">Пока нет записей.</div><p class="note" style="margin-top:14px">Вес может колебаться из-за воды, цикла и других обычных факторов. Оценивай динамику, а не одно число.</p></div>
+</section>
+</main>
+
+<div class="reminder" id="reminder"><div style="display:flex;align-items:center;justify-content:space-between"><b style="font-size:12px">Маленькое напоминание ♡</b><button class="btn icon outline reminder-toggle" onclick="collapseReminder()" aria-label="Свернуть напоминание">⌄</button></div><p>Пора посмотреть, что у тебя сегодня на обед. Всё уже можно собрать из заготовок.</p><div class="rem-actions"><button onclick="markLunch()">Отметить</button><button onclick="hideReminder()">Позже</button><button onclick="go('home')">К меню</button></div></div>
+<nav class="bottom"><button class="active" data-page="home" onclick="go('home')"><span>⌂</span>Меню</button><button data-page="prep" onclick="go('prep')"><span>♧</span>Заготовки</button><button data-page="shopping" onclick="go('shopping')"><span>▤</span>Покупки</button><button data-page="recipes" onclick="go('recipes')"><span>♡</span>Блюда</button><button data-page="progress" onclick="go('progress')"><span>♡</span>Вес</button></nav>
+
+<div class="welcome-backdrop" id="welcomeBackdrop" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+  <div class="welcome-pop">
+    <button class="close welcome-x" aria-label="Закрыть" onclick="dismissWelcome()">×</button>
+    <div class="welcome-sticker" aria-hidden="true">🍓</div>
+    <h2 id="welcomeTitle">Привет, зайка!</h2>
+    <div class="meme-line">Вот такая хуйня.<br>Ешь её и будет тебе счастье!</div>
+    <p>Вкусно, сытно и без стояния у плиты полдня. Тут мы за нормальную еду и спокойную голову.</p>
+    <button class="btn primary" onclick="dismissWelcome()">Погнали, зайка!</button>
+    <div class="note" style="margin-top:12px">W-MENU · вкусно жить — это база</div>
+  </div>
+</div>
+
+<div class="modal-back" id="modal" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="modal-top"><button class="close" onclick="closeModal()">×</button></div><div id="modalContent"></div></div></div>
+
+<script>
+const dayNames=['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
+const mealTypes=['Завтрак','Обед','Перекус','Ужин'];
+const dishes=[
+[
+['Сырники с курагой','20 мин · творожный завтрак','https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=85','Творог 180 г, яйцо 1 шт., мука 20 г, курага 20 г. Смешай, сформируй сырники и приготовь на антипригарной сковороде под крышкой.','Творог, яйцо, мука, курага'],
+['Курица с рисом и овощами','25 мин · удобно из заготовок','https://images.unsplash.com/photo-1512621776951-a57141f2e?auto=format&fit=crop&w=700&q=85','Курица 140 г готовой, рис 60 г сухого (или около 180 г готового), овощи 180 г. Прогрей курицу с ложкой воды и специями, подай с рисом и овощами.','Курица, рис, овощи'],
+['Йогурт с ягодами и орехами','5 мин · быстрый перекус','https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=85','Йогурт 170 г, ягоды 80 г, орехи 10 г. Просто собери в небольшой миске.','Йогурт, ягоды, орехи'],
+['Индейка со стручковой фасолью','20 мин · сочный ужин','https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85','Индейка 150 г, фасоль 180 г, специи, немного воды или бульона. Потуши под крышкой до готовности, добавь йогуртовый соус.','Индейка, фасоль, йогурт']
+],
+[
+['Овсяноблин с сулугуни','15 мин · сытный завтрак','https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=700&q=85','Яйцо, овсяные хлопья 35 г, молоко 30 мл, сулугуни 30 г. Смешай основу, обжарь с двух сторон и добавь сыр.','Яйцо, овсянка, сулугуни'],
+['Плов с индейкой','30 мин · готовим на несколько порций','https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=85','Индейка 140 г, рис 60 г сухого, морковь и лук. Приготовь сразу 2–3 порции, добавь воду и специи.','Индейка, рис, морковь'],
+['Творог с фруктом','3 мин · без готовки','https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=700&q=85','Творог 150 г и фрукт 100 г. По желанию добавь корицу.','Творог, фрукт'],
+['Курица с булгуром','15 мин · собрать из заготовок','https://images.unsplash.com/photo-1547592180-86f7d4a3b7b2?auto=format&fit=crop&w=700&q=85','Курица 140 г, булгур 60 г сухого, овощи 150 г. Используй готовые заготовки и добавь соус.','Курица, булгур, овощи']
+],
+[
+['Омлет с сыром','10 мин · горячий завтрак','https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=700&q=85','2 яйца, сыр 25 г, овощи 100 г. Приготовь под крышкой на слабом огне.','Яйца, сыр, овощи'],
+['Паста с курицей','20 мин · сливочный соус без тяжести','https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=700&q=85','Паста 70 г сухой, курица 130 г, йогурт 40 г, сыр 15 г. Смешай горячую пасту с курицей и соусом.','Паста, курица, йогурт'],
+['Йогурт и орехи','2 мин · быстрый перекус','https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=85','Йогурт 170 г и орехи 10 г.','Йогурт, орехи'],
+['Говядина с гречкой','25 мин · тёплый ужин','https://images.unsplash.com/photo-1512621776951-a57141f2e?auto=format&fit=crop&w=700&q=85','Говядина 140 г, гречка 60 г сухой, овощи 150 г. Говядину потуши до мягкости с небольшим количеством жидкости.','Говядина, гречка, овощи']
+],
+[
+['Творог с фруктами','5 мин · без готовки','https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=700&q=85','Творог 170 г, фрукт 100 г, корица.','Творог, фрукт'],
+['Чахохбили с гречкой','30 мин · можно приготовить заранее','https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85','Курица 150 г, гречка 60 г сухой, лук, сладкий перец, специи. Туши курицу с овощами и небольшим количеством воды.','Курица, гречка, перец'],
+['Яйцо и овощи','5 мин · лёгкий перекус','https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=700&q=85','Яйцо 1 шт. и овощи 150 г.','Яйцо, овощи'],
+['Тёплая фасоль с курицей','15 мин · быстро собрать','https://images.unsplash.com/photo-1512621776951-a57141f2e?auto=format&fit=crop&w=700&q=85','Курица 130 г, фасоль 150 г, овощи и йогуртовый соус. Прогрей вместе.','Курица, фасоль, овощи']
+],
+[
+['Сырники','20 мин · завтрак','https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=85','Творог 180 г, яйцо, мука 20 г. Приготовь сырники и подай с ягодами.','Творог, яйцо, мука'],
+['Индейка с рисом','20 мин · из заготовок','https://images.unsplash.com/photo-1512621776951-a57141f2e?auto=format&fit=crop&w=700&q=85','Индейка 140 г, рис 60 г сухого, овощи 180 г.','Индейка, рис, овощи'],
+['Йогурт с ягодами','3 мин · перекус','https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=85','Йогурт 170 г, ягоды 80 г.','Йогурт, ягоды'],
+['Курица с овощами','15 мин · ужин','https://images.unsplash.com/photo-1547592180-86f7d4a3b7b2?auto=format&fit=crop&w=700&q=85','Курица 150 г, овощи 220 г. Потуши с приправами и небольшим количеством бульона.','Курица, овощи']
+],
+[
+['Яйца и авокадо','10 мин · завтрак','https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=700&q=85','2 яйца, авокадо 40 г, овощи 100 г.','Яйца, авокадо'],
+['Говядина с булгуром','25 мин · сытный обед','https://images.unsplash.com/photo-1512621776951-a57141f2e?auto=format&fit=crop&w=700&q=85','Говядина 140 г, булгур 60 г сухого, овощи 150 г.','Говядина, булгур'],
+['Творог','2 мин · перекус','https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=700&q=85','Творог 150 г. Можно добавить ягоды.','Творог'],
+['Запеканка с пастой','30 мин · ужин','https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=700&q=85','Паста 65 г сухой, яйцо, сыр 25 г, йогурт 30 г. Смешай и запеки до золотистой корочки.','Паста, яйцо, сыр']
+],
+[
+['Овсяноблин','15 мин · завтрак','https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=700&q=85','Яйцо, овсяные хлопья 35 г, молоко 30 мл, начинка по вкусу.','Яйцо, овсянка'],
+['Курица с гречкой','20 мин · из заготовок','https://images.unsplash.com/photo-1547592180-86f7d4a3b7b2?auto=format&fit=crop&w=700&q=85','Курица 140 г, гречка 60 г сухой, овощи 180 г.','Курица, гречка, овощи'],
+['Фрукты и йогурт','3 мин · перекус','https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=85','Йогурт 150 г, фрукт 100 г.','Йогурт, фрукт'],
+['Индейка с овощами','20 мин · лёгкий ужин','https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85','Индейка 150 г, овощи 220 г. Потуши под крышкой с травами и небольшим количеством воды.','Индейка, овощи']
+]
+];
+let day=0,kcal=1600,completed={};
+const imgFallback="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=700&q=80";
+
+function showWelcome(force=false){
+  const el=document.getElementById('welcomeBackdrop');
+  if(!el)return;
+  el.classList.add('show');
+  clearTimeout(window.wmenuWelcomeTimer);
+  window.wmenuWelcomeTimer=setTimeout(()=>dismissWelcome(),5000);
+}
+function dismissWelcome(){
+  const el=document.getElementById('welcomeBackdrop');
+  if(!el)return;
+  clearTimeout(window.wmenuWelcomeTimer);
+  el.classList.remove('show');
+}
+
+function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.bottom button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'});if(id==='recipes')renderAll()}
+function setKcal(v){if(!Number.isFinite(v)||v<1300||v>3500){alert('Проверь значение калорийности. Введи число от 1300 до 3500.');return}kcal=v;document.getElementById('heroKcal').textContent=v+' ккал';localStorage.setItem('wmenu-kcal',String(v))}
+function renderDays(){document.getElementById('days').innerHTML=dayNames.map((n,i)=>'<button class="day '+(i===day?'active':'')+'" onclick="day='+i+';renderDays();renderMeals()"><b>'+['ПН','ВТ','СР','ЧТ','ПТ','СБ','ВС'][i]+'</b>'+ (i+1)+'</button>').join('');document.getElementById('dayHeading').textContent=dayNames[day]}
+function renderMeals(){let list=dishes[day];document.getElementById('mealList').innerHTML=list.map((d,i)=>'<article class="card meal-card"><img class="meal-img" src="'+d[2]+'" alt="'+d[0]+'""><div class="meal-info"><div class="meal-type">'+mealTypes[i]+'</div><h3 class="meal-title">'+d[0]+'</h3><div class="meta"><span>◷ '+d[1].split(' · ')[0]+'</span><span>♡ порция по плану</span></div><div class="meal-buttons"><button class="btn primary" onclick="openRecipe('+day+','+i+')">Рецепт</button><button class="btn outline" onclick="replaceDish('+i+')">Заменить</button><button class="btn icon outline" onclick="toggleDone('+i+')">'+(completed[day+'-'+i]?'✓':'○')+'</button></div></div></article>').join('');updateProgress()}
+function updateProgress(){let count=mealTypes.filter((_,i)=>completed[day+'-'+i]).length;document.getElementById('progressText').textContent=count+' из 4 приёмов отмечено';document.getElementById('progressBar').style.width=(count*25)+'%'}
+function toggleDone(i){let key=day+'-'+i;completed[key]=!completed[key];renderMeals()}
+function openRecipe(d,i){let x=dishes[d][i];document.getElementById('modalContent').innerHTML='<img class="recipe-cover" src="'+x[2]+'" alt="'+x[0]+'""><div class="recipe-body"><div class="eyebrow">'+mealTypes[i]+' · '+x[1]+'</div><h2>'+x[0]+'</h2><p class="muted">'+x[3]+'</p><h3>Ингредиенты</h3><p>'+x[4]+'</p><h3>Как приготовить</h3><ol><li>Подготовь ингредиенты и отмерь порции.</li><li>Приготовь блюдо по инструкции, используй специи и немного жидкости для сочности.</li><li>Собери тарелку. Если часть ингредиентов заготовлена заранее, это займёт всего несколько минут.</li></ol><p class="note">Граммовки в этой демонстрационной версии являются базовым примером. При персонализации меню они должны пересчитываться под выбранную калорийность.</p></div>';document.getElementById('modal').classList.add('open')}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+function replaceDish(i){
+  const currentDay=day;
+  const choices=[...new Map(dishes.map((arr,di)=>({d:di,x:arr[i]})).filter(o=>o.x&&o.x[0]!==dishes[currentDay][i][0]).map(o=>[o.x[0],o])).values()];
+  document.getElementById('modalContent').innerHTML='<div class="recipe-body"><div class="eyebrow">ВЫБЕРИ ВАРИАНТ</div><h2>Замена: '+mealTypes[i]+'</h2><div class="replace-list">'+choices.map(o=>'<button class="replace-option" onclick="chooseReplacement('+currentDay+','+i+','+o.d+')"><span>'+o.x[0]+'</span><small>'+dayNames[o.d]+' · '+o.x[1]+'</small></button>').join('')+'</div></div>';
+  document.getElementById('modal').classList.add('open');
+}
+function chooseReplacement(targetDay,mealIndex,sourceDay){
+  const replacement=dishes[sourceDay][mealIndex];
+  dishes[targetDay][mealIndex]=replacement;
+  delete completed[targetDay+'-'+mealIndex];
+  if(day===targetDay)renderMeals();
+  closeModal();
+}
+function renderAll(){document.getElementById('allRecipes').innerHTML=dishes.flatMap((arr,di)=>arr.map((d,i)=>({d,di,i}))).map(o=>'<article class="card meal-card"><img class="meal-img" src="'+o.d[2]+'" alt="'+o.d[0]+'""><div class="meal-info"><div class="meal-type">'+dayNames[o.di]+' · '+mealTypes[o.i]+'</div><h3 class="meal-title">'+o.d[0]+'</h3><div class="meta"><span>'+o.d[1]+'</span></div><div class="meal-buttons"><button class="btn primary" onclick="openRecipe('+o.di+','+o.i+')">Рецепт</button></div></div></article>').join('')}
+function saveCalculatorInputs(){
+  const data={};
+  ['age','height','weight','loss','activity'].forEach(id=>{const el=document.getElementById(id);if(el)data[id]=el.value});
+  try{localStorage.setItem('wmenu-calculator-inputs',JSON.stringify(data))}catch(e){}
+}
+function savePersonalData(){
+  saveCalculatorInputs();
+  try{
+    localStorage.setItem('wmenu-kcal',String(kcal));
+    localStorage.setItem('wmenu-personal-saved','1');
+    const status=document.getElementById('saveStatus');
+    if(status)status.textContent='Сохранено на этом устройстве. При следующем входе в этот браузер данные загрузятся автоматически.';
+  }catch(e){
+    const status=document.getElementById('saveStatus');
+    if(status)status.textContent='Не удалось сохранить данные. Проверь настройки приватности браузера.';
+  }
+}
+function restoreCalculatorInputs(){
+  try{
+    const data=JSON.parse(localStorage.getItem('wmenu-calculator-inputs')||'null');
+    if(!data)return;
+    if(localStorage.getItem('wmenu-personal-saved')==='1'){const status=document.getElementById('saveStatus');if(status)status.textContent='Твои данные сохранены на этом устройстве и восстановлены.';}
+    ['age','height','weight','loss','activity'].forEach(id=>{const el=document.getElementById(id);if(el&&data[id]!==undefined)el.value=data[id]});
+    if(localStorage.getItem('wmenu-calculator-done')==='1')calculate(true);
+  }catch(e){}
+}
+function calculate(restoring=false){const a=Number(document.getElementById('age').value),h=Number(document.getElementById('height').value),w=Number(document.getElementById('weight').value),l=Number(document.getElementById('loss').value),act=Number(document.getElementById('activity').value);if(a<18||!h||!w||h<120||w<35){if(!restoring)alert('Проверь возраст, рост и вес.');return}saveCalculatorInputs();let bmr=10*w+6.25*h-5*a-161,tdee=bmr*act,target=Math.round(tdee*.85/50)*50;let el=document.getElementById('calcResult');el.classList.remove('hidden');el.innerHTML='<b>Твой ориентир</b><p>Основной обмен: '+Math.round(bmr)+' ккал</p><p>Поддержание веса: '+Math.round(tdee)+' ккал</p><p><b>Примерный мягкий дефицит: '+target+' ккал в день</b></p><p>Желаемый вес: '+(w-l).toFixed(1)+' кг</p><button class="btn primary" onclick="setKcal('+target+')">Использовать '+target+' ккал</button><p class="note">Расчёт ориентировочный, не медицинское назначение. Не используй снижение калорийности при беременности и грудном вскармливании без консультации специалиста.</p>';try{localStorage.setItem('wmenu-calculator-done','1')}catch(e){}}
+function collapseReminder(){
+  const el=document.getElementById('reminder');
+  if(!el)return;
+  el.classList.toggle('collapsed');
+  const collapsed=el.classList.contains('collapsed');
+  const p=el.querySelector('p');
+  const actions=el.querySelector('.rem-actions');
+  const toggle=el.querySelector('.reminder-toggle');
+  if(p)p.hidden=collapsed;
+  if(actions)actions.hidden=collapsed;
+  if(toggle)toggle.textContent=collapsed?'♡ Напоминание':'⌄';
+}
+function toggleReminders(enabled){
+  const el=document.getElementById('reminder');if(!el)return;
+  el.classList.toggle('hidden',!enabled);
+  try{localStorage.setItem('wmenu-reminders',enabled?'1':'0')}catch(e){}
+}
+function hideReminder(){document.getElementById('reminder').classList.add('hidden')}
+function markLunch(){completed[day+'-1']=true;renderMeals();collapseReminder()}
+function readWeightHistory(){try{const value=JSON.parse(localStorage.getItem('wmenu-history')||'[]');return Array.isArray(value)?value:[]}catch(e){return []}}
+function saveWeight(){
+  const input=document.getElementById('newWeight'),feedback=document.getElementById('weightFeedback'),value=Number(input.value);
+  if(!Number.isFinite(value)||value<30||value>350){if(feedback)feedback.textContent='Введи вес от 30 до 350 кг.';return}
+  const history=readWeightHistory();history.push({date:new Date().toLocaleDateString('ru-RU'),weight:value});
+  try{localStorage.setItem('wmenu-history',JSON.stringify(history))}catch(e){}
+  renderWeights();input.value='';if(feedback)feedback.textContent='Запись добавлена.';
+}
+function renderWeights(){const history=readWeightHistory();document.getElementById('weightHistory').textContent=history.length?history.map(x=>x.date+' · '+x.weight+' кг').join(' | '):'Пока нет записей.'}
+let saved=0;try{saved=Number(localStorage.getItem('wmenu-kcal'))}catch(e){}
+if(saved>=1300&&saved<=3500){kcal=saved;document.getElementById('heroKcal').textContent=kcal+' ккал'}
+let remindersSaved=null;try{remindersSaved=localStorage.getItem('wmenu-reminders')}catch(e){}
+if(remindersSaved==='0'){const toggle=document.getElementById('remindersOn');if(toggle)toggle.checked=false;toggleReminders(false)}
+renderDays();renderMeals();renderWeights();restoreCalculatorInputs();['age','height','weight','loss','activity'].forEach(id=>{const el=document.getElementById(id);if(el){el.addEventListener('input',saveCalculatorInputs);el.addEventListener('change',saveCalculatorInputs)}});setTimeout(()=>showWelcome(),650)
+document.addEventListener('keydown',e=>{if(e.key==='Escape')dismissWelcome()});
+</script>
+</body></html>
